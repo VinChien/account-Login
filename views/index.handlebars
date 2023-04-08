@@ -17,10 +17,10 @@
           name='email'
           type='email'
           class='form-control'
-          placeholder='email@XXX'
+          placeholder='email@xxx.com'
           id='email'
           aria-describedby='email'
-          {{!-- value='{{email}}' --}}
+          value='{{email}}'
           required
         />
       </div>
@@ -33,13 +33,13 @@
           placeholder='password'
           id='password'
           aria-describedby='password'
+          value="{{password}}"
           required
         />
       </div>
-      {{!-- {{#if message}}
-      <div class='form-text text-danger my-2'>Can't find your username and
-        password.</div>
-    {{/if}} --}}
+      {{#if errorMessage}}
+        <div class='form-text text-danger my-2'>{{errorMessage}}</div>
+      {{/if}}
       <button type='submit' class='btn btn-primary'>Sign In</button>
     </form>
   </div>

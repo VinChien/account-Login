@@ -1,5 +1,5 @@
 const userModel = require('./user');
-const userData = require('../users.json').results;
+const userData = require('../users.json');
 const db = require('../config/mongoose');
 
 db.once('open', () => {
