@@ -7,9 +7,10 @@
         name='email'
         type='email'
         class='form-control'
+        placeholder="email@XXX"
         id='email'
         aria-describedby='email'
-        value='{{email}}'
+        {{!-- value='{{email}}' --}}
         required
       />
     </div>
@@ -19,16 +20,16 @@
         name='password'
         type='password'
         class='form-control'
-        aria-describedby='password'
+        placeholder="password"
         id='password'
-        value='password'
+        aria-describedby='password'
         required
       />
     </div>
-    {{#if message}}
+    {{!-- {{#if message}}
       <div class='form-text text-danger my-2'>Can't find your username and
         password.</div>
-    {{/if}}
+    {{/if}} --}}
     <button type='submit' class='btn btn-primary'>Sign In</button>
   </form>
 </div>

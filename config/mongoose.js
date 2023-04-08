@@ -1,17 +1,23 @@
+// 載入 mongoose
 const mongoose = require('mongoose');
-
+// 僅在非正式環境時, 使用 dotenv
 if (process.env.NODE_ENV !== 'production') {
-  console.log('require dotenv...');
   require('dotenv').config();
 }
-
-mongoose.connect(process.env.MONGODB_URI);
-
-console.log('connecting to mongoDB...');
-
+// 設定連線到 mongoDB，並處理 DeprecationWarning 警告
+mongoose.connect(process.env.MONGODB_URI, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+});
+// 取得資料庫連線狀態
 const db = mongoose.connection;
-
-db.on('error', (error) => console.log(error));
-db.once('open', () => console.log('connected to mongoDB!'));
-
+// 連線異常
+db.on('error', () => {
+  console.log('mongodb error!');
+});
+// 連線成功
+db.once('open', () => {
+  console.log('mongodb connected!');
+});
+// 透過 module.exports 輸出
 module.exports = db;
