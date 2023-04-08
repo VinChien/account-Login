@@ -5,7 +5,18 @@ const user = require('../../models/user');
 
 // index route
 router.get('/', (req, res) => {
-  res.render('index');
+  // 從資料庫比對cookie
+  const cookie = req.cookies.userName;
+  user
+    .findOne({ firstName: cookie })
+    .then((user) => {
+      if (user) {
+        res.render('index', { user_name: user.firstName });
+      } else {
+        res.render('index');
+      }
+    })
+    .catch((error) => console.log(error));
 });
 
 router.post('/', (req, res) => {
@@ -17,6 +28,7 @@ router.post('/', (req, res) => {
     .findOne({ email, password })
     .then((user) => {
       if (user) {
+        res.cookie('userName', user.firstName);
         res.render('index', { user_name: user.firstName });
       } else {
         const errorMessage = `Wrong email or password, please try again.`;
