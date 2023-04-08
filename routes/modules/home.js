@@ -38,5 +38,10 @@ router.post('/', (req, res) => {
     .catch((error) => console.log(error));
 });
 
+router.post('/login-out', (req, res) => {
+  res.clearCookie('userName');
+  res.redirect('/');
+});
+
 // 匯出路由器
 module.exports = router;
